@@ -1,65 +1,60 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Article;
-use Illuminate\Http\Request;
+use Exception;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpFoundation\Response;
 
 class ArticleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        try {
+            $articles = Article::query()
+                ->where('is_published', true)
+                ->select('id', 'title', 'slug', 'image_url', 'created_at')
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+            return $this->success($articles, 'Articles Retrieved Successfully!');
+        } catch (Exception $e) {
+            Log::error('Get articles error: ' . $e->getMessage());
+            return $this->error(null, 'Failed to Get Articles!', Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function show(Article $article): JsonResponse
     {
-        //
+        try {
+            if (!$article->is_published) {
+                return $this->error(null, 'Article Not Found!', Response::HTTP_NOT_FOUND);
+            }
+            $article->increment('views_count');
+            return $this->success($article, 'Article Retrieved Successfully!');
+        } catch (Exception $e) {
+            Log::error('Get article error: ' . $e->getMessage());
+            return $this->error(null, 'Failed to Get Article!', Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    private function success($data, string $message, int $code = Response::HTTP_OK): JsonResponse
     {
-        //
+        return response()->json([
+            'status' => 'success',
+            'message' => $message,
+            'data' => $data
+        ], $code);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Article $article)
+    private function error($errors, string $message, int $code): JsonResponse
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Article $article)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Article $article)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Article $article)
-    {
-        //
+        return response()->json([
+            'status' => 'error',
+            'message' => $message,
+            'errors' => $errors
+        ], $code);
     }
 }
