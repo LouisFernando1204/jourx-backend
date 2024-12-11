@@ -87,7 +87,7 @@
 
         <p class="message">Click the button below to return to the app and start your first journal entry:</p>
 
-        <a href="https://jourxredirect.dickyyyy.site/success?username={{ $username }}" class="button">Back to
+        <a href="https://jourxredirect.dickyyyy.site/success" class="button">Back to
             JourX</a>
 
         <p class="message">If you have any questions or need assistance, feel free to contact our support team.

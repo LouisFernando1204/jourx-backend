@@ -32,7 +32,11 @@ class AuthController extends Controller
                 'password' => Hash::make($validated['password'])
             ]);
             $token = $user->createToken('auth_token')->plainTextToken;
-            Mail::to($validated['email'])->send(mailable: new RegistrationSuccessful($validated['username']));
+            try {
+                Mail::to($validated['email'])->send(new RegistrationSuccessful($validated['username']));
+            } catch (Exception $mailException) {
+                Log::error('Mail sending failed: ' . $mailException->getMessage());
+            }
             return $this->success([
                 'user' => $user,
                 'token' => $token,

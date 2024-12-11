@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\ArticleController;
-use App\Http\Controllers\Api\AuthController;
-use \App\Http\Middleware\VerifyCsrfToken;
+use App\Http\Controllers\api\ArticleController;
+use App\Http\Controllers\api\AuthController;
+use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegistrationSuccessfull;
 use Illuminate\Support\Facades\Route;
