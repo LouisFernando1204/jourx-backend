@@ -2,8 +2,13 @@
 
 use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\AuthController;
-use Illuminate\Http\Request;
+use \App\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegistrationSuccessfull;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Http\Request;
+use App\Models\Member;
 
 // Auth
 Route::post('/register', [AuthController::class, 'register']);
