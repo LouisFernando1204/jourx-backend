@@ -73,28 +73,29 @@
 
 <body>
     <div class="container">
-        <h1 class="title">Welcome to JourX!</h1>
+        <h1 class="title">Selamat Datang di JourX!</h1>
 
-        <p class="greeting">Hello, {{ $username }}</p>
+        <p class="greeting">Halo, {{ $username }}</p>
 
-        <p class="message">Thank you for joining <strong>JourX</strong>, your personal space to share your thoughts,
-            reflect on your day, and receive meaningful insights. We’re excited to have you as part of our community
-            where mental well-being and self-expression matter most.</p>
+        <p class="message">Terima kasih telah bergabung dengan <strong>JourX</strong>, ruang pribadi Anda untuk
+            berbagi pikiran, merefleksikan hari Anda, dan mendapatkan wawasan yang bermakna. Kami senang menyambut Anda
+            sebagai bagian dari komunitas kami di mana kesejahteraan mental dan ekspresi diri sangat dihargai.</p>
 
-        <p class="message">Your account has been successfully created, and you are now ready to use JourX. Whether it’s
-            pouring your heart out in a journal entry or seeking AI-generated advice, we’re here to support your mental
-            health journey.</p>
+        <p class="message">Akun Anda telah berhasil dibuat, dan Anda sekarang siap menggunakan JourX. Baik itu
+            menuangkan perasaan Anda dalam catatan jurnal atau mencari saran dari AI, kami di sini untuk mendukung
+            perjalanan kesehatan mental Anda.</p>
 
-        <p class="message">Click the button below to return to the app and start your first journal entry:</p>
+        <p class="message">Klik tombol di bawah ini untuk kembali ke aplikasi dan mulai membuat catatan jurnal
+            pertama Anda:</p>
 
-        <a href="https://jourxredirect.dickyyyy.site/success?username={{ $username }}" class="button">Back to
+        <a href="https://jourxredirect.dickyyyy.site/success?username={{ $username }}" class="button">Kembali ke
             JourX</a>
 
-        <p class="message">If you have any questions or need assistance, feel free to contact our support team.
-            Together, we’ll make every moment count.</p>
+        <p class="message">Jika Anda memiliki pertanyaan atau memerlukan bantuan, jangan ragu untuk menghubungi tim
+            dukungan kami. Bersama-sama, kita akan membuat setiap momen menjadi berarti.</p>
 
         <div class="footer">
-            <p>&copy; 2024 JourX. Your stories, your voice, your peace.</p>
+            <p>&copy; 2024 JourX. Cerita Anda, suara Anda, kedamaian Anda.</p>
         </div>
     </div>
 </body>
