@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('content');
-            $table->string('image');
-            $table->string('image_url')->nullable(); // URL untuk Android
+            $table->string('image_url')->nullable();
             $table->boolean('is_published')->default(false);
             $table->integer('views_count')->default(0);
             $table->timestamps();

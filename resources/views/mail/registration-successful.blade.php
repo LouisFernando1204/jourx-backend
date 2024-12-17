@@ -29,7 +29,7 @@
         .title {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #2563eb;
+            color: #EB7425FF;
             text-align: center;
         }
 
@@ -46,7 +46,7 @@
         .button {
             display: inline-block;
             text-align: center;
-            background-color: #2563eb;
+            background-color: #EB7425FF;
             color: #ffffff !important;
             font-weight: bold;
             padding: 0.75rem 1.5rem;
@@ -58,7 +58,7 @@
         }
 
         .button:hover {
-            background-color: #1d4ed8;
+            background-color: #EB7425FF;
         }
 
         /* Footer */
@@ -87,7 +87,7 @@
 
         <p class="message">Click the button below to return to the app and start your first journal entry:</p>
 
-        <a href="https://jourxredirect.dickyyyy.site/success" class="button">Back to
+        <a href="https://jourxredirect.dickyyyy.site/success?username={{ $username }}" class="button">Back to
             JourX</a>
 
         <p class="message">If you have any questions or need assistance, feel free to contact our support team.

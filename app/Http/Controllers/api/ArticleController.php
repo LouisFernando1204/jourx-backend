@@ -16,9 +16,9 @@ class ArticleController extends Controller
         try {
             $articles = Article::query()
                 ->where('is_published', true)
-                ->select('id', 'title', 'slug', 'image_url', 'created_at')
+                ->select('id', 'title', 'slug', 'content', 'image_url', 'views_count', 'created_at')
                 ->orderBy('created_at', 'desc')
-                ->paginate(10);
+                ->get();
             return $this->success($articles, 'Articles Retrieved Successfully!');
         } catch (Exception $e) {
             Log::error('Get articles error: ' . $e->getMessage());
