@@ -73,6 +73,27 @@ class AuthController extends Controller
         }
     }
 
+    public function check_user(Request $request): JsonResponse
+    {
+        try {
+            $validated = $request->validate([
+                'email' => 'required|email'
+            ]);
+            $user = User::where('email', $validated['email'])->first();
+            if (!$user) {
+                return $this->error(null, 'User not Found!', Response::HTTP_UNAUTHORIZED);
+            }
+            return $this->success([
+                'user' => $user
+            ], 'Email is Found!');
+        } catch (ValidationException $e) {
+            return $this->error($e->errors(), 'Validation Failed!', Response::HTTP_UNPROCESSABLE_ENTITY);
+        } catch (Exception $e) {
+            Log::error('Check user error: ' . $e->getMessage());
+            return $this->error(null, 'Check User Failed!', Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public function logout(Request $request): JsonResponse
     {
         try {
