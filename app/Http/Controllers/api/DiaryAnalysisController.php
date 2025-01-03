@@ -55,7 +55,7 @@ class DiaryAnalysisController extends Controller
                ]
            ]);
        } catch (\Exception $e) {
-           \Log::error('Weekly Analysis Error: ' . $e->getMessage());
+           Log::error('Weekly Analysis Error: ' . $e->getMessage());
            return response()->json([
                'status' => 'error',
                'message' => 'Failed to fetch weekly analysis'
@@ -110,7 +110,7 @@ class DiaryAnalysisController extends Controller
                ]
            ]);
        } catch (\Exception $e) {
-           \Log::error('Monthly Analysis Error: ' . $e->getMessage());
+           Log::error('Monthly Analysis Error: ' . $e->getMessage());
            return response()->json([
                'status' => 'error',
                'message' => 'Failed to fetch monthly analysis'
@@ -171,7 +171,7 @@ class DiaryAnalysisController extends Controller
                ]
            ]);
        } catch (\Exception $e) {
-           \Log::error('Emotion Distribution Error: ' . $e->getMessage());
+           Log::error('Emotion Distribution Error: ' . $e->getMessage());
            return response()->json([
                'status' => 'error',
                'message' => 'Failed to fetch emotion distribution'
