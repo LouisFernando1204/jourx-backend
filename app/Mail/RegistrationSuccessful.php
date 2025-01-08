@@ -10,7 +10,6 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
 
-
 class RegistrationSuccessful extends Mailable
 {
     use Queueable, SerializesModels;
@@ -31,7 +30,10 @@ class RegistrationSuccessful extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME')),
+            from: new Address(
+                env('MAIL_FROM_ADDRESS', 'noreply-jourx@jourx.dickyyyy.site'),
+                env('MAIL_FROM_NAME', 'JourX')
+            ),
             subject: 'Registration Successful'
         );
     }
@@ -45,7 +47,7 @@ class RegistrationSuccessful extends Mailable
             view: 'mail.registration-successful',
             with: [
                 'username' => $this->username
-            ],
+            ]
         );
     }
 

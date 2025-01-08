@@ -29,7 +29,7 @@
         .title {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #EB7425FF;
+            color: #0284C7;
             text-align: center;
         }
 
@@ -46,7 +46,7 @@
         .button {
             display: inline-block;
             text-align: center;
-            background-color: #EB7425FF;
+            background-color: #0284C7;
             color: #ffffff !important;
             font-weight: bold;
             padding: 0.75rem 1.5rem;
@@ -58,7 +58,7 @@
         }
 
         .button:hover {
-            background-color: #EB7425FF;
+            background-color: #0284C7;
         }
 
         /* Footer */
