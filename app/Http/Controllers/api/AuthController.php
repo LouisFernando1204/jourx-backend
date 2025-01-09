@@ -32,7 +32,7 @@ class AuthController extends Controller
             ]);
             $token = $user->createToken('auth_token')->plainTextToken;
             try {
-                Mail::to($validated['email'])->send(new RegistrationSuccessful($validated['username']));
+                Mail::to($validated['email'])->send(new RegistrationSuccessful($validated['name']));
             } catch (Exception $mailException) {
                 Log::error('Mail sending failed: ' . $mailException->getMessage());
             }
@@ -90,7 +90,7 @@ class AuthController extends Controller
             ]);
             $token = $user->createToken('auth_token')->plainTextToken;
             try {
-                Mail::to($validated['email'])->send(new RegistrationSuccessful($validated['username']));
+                Mail::to($validated['email'])->send(new RegistrationSuccessful($validated['name']));
             } catch (Exception $mailException) {
                 Log::error('Mail sending failed: ' . $mailException->getMessage());
             }
