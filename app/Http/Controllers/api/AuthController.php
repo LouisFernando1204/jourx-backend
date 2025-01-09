@@ -21,7 +21,6 @@ class AuthController extends Controller
         try {
             $validated = $request->validate([
                 'name' => 'required|string|max:255',
-                'username' => 'required|string|unique:users|max:255',
                 'email' => 'required|string|email|unique:users|max:255',
                 'password' => 'required|string|min:8',
                 'birth_date' => 'required|date',
@@ -70,6 +69,63 @@ class AuthController extends Controller
         } catch (Exception $e) {
             Log::error('Login error: ' . $e->getMessage());
             return $this->error(null, 'Login Failed!', Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function register_with_google(Request $request): JsonResponse
+    {
+        try {
+            $validated = $request->validate([
+                'uid' => 'required|string',
+                'name' => 'required|string|max:255',
+                'email' => 'required|email',
+                'birth_date' => 'required|date',
+                'gender' => 'required|in:male,female,other',
+            ]);
+            $user = User::create([
+                'uid' => $validated['uid'],
+                'name' => $validated['name'],
+                'birth_date' => $validated['birth_date'],
+                'gender' => $validated['gender'],
+            ]);
+            $token = $user->createToken('auth_token')->plainTextToken;
+            try {
+                Mail::to($validated['email'])->send(new RegistrationSuccessful($validated['username']));
+            } catch (Exception $mailException) {
+                Log::error('Mail sending failed: ' . $mailException->getMessage());
+            }
+            return $this->success([
+                'user' => $user,
+                'token' => $token,
+            ], 'Registration with Google Successful!', Response::HTTP_CREATED);
+        } catch (ValidationException $e) {
+            return $this->error($e->errors(), 'Validation Failed!', Response::HTTP_UNPROCESSABLE_ENTITY);
+        } catch (Exception $e) {
+            Log::error('Login error: ' . $e->getMessage());
+            return $this->error(null, 'Registration with Google Failed!', Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function login_with_google(Request $request): JsonResponse
+    {
+        try {
+            $validated = $request->validate([
+                'uid' => 'required|string',
+            ]);
+            $user = User::where('uid', $validated['uid'])->first();
+            if (!$user) {
+                return $this->error(null, 'Invalid UID!', Response::HTTP_UNAUTHORIZED);
+            }
+            $token = $user->createToken('auth_token')->plainTextToken;
+            return $this->success([
+                'user' => $user,
+                'token' => $token
+            ], 'Login with Google Successful!');
+        } catch (ValidationException $e) {
+            return $this->error($e->errors(), 'Validation Failed!', Response::HTTP_UNPROCESSABLE_ENTITY);
+        } catch (Exception $e) {
+            Log::error('Login error: ' . $e->getMessage());
+            return $this->error(null, 'Login with Google Failed!', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
