@@ -27,13 +27,13 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('/articles', [ArticleController::class, 'index']);
 Route::get('/articles/{article:slug}', [ArticleController::class, 'show']);
 
-// //Diaries
-// Route::middleware('auth:sanctum')->group(function () {
-//     Route::post('/diaries', [DiaryController::class, 'store']);
-//     Route::get('/diaries', [DiaryController::class, 'index']);
-//     Route::get('/diaries/{diary}', [DiaryController::class, 'show']);
-//     // Stress & Emotion Analysis
-//         Route::get('/diaries/analysis/weekly', [DiaryAnalysisController::class, 'weekly']);
-//         Route::get('/diaries/analysis/monthly', [DiaryAnalysisController::class, 'monthly']);
-//         Route::get('/diaries/analysis/emotions', [DiaryAnalysisController::class, 'emotionDistribution']);
-// });
+//Diaries
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/diaries', [DiaryController::class, 'store']);
+    Route::get('/diaries', [DiaryController::class, 'index']);
+    Route::get('/diaries/{diary}', [DiaryController::class, 'show']);
+    // Stress & Emotion Analysis
+        Route::get('/diaries/analysis/weekly', [DiaryAnalysisController::class, 'weekly']);
+        Route::get('/diaries/analysis/monthly', [DiaryAnalysisController::class, 'monthly']);
+        Route::get('/diaries/analysis/emotions', [DiaryAnalysisController::class, 'emotionDistribution']);
+});
