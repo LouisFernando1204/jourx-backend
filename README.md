@@ -23,7 +23,8 @@ Welcome to **JourX**, an innovative journaling platform designed to help users e
 - 🤖 **AI Recommendation**: OpenAI GPT API for emotion analysis and tailored suggestions  
 
 ## 🚀 JourX Insights  
-- 💻 **Source Code**: [View Code](https://github.com/yebology/jourx-frontend)  
+- 🎨 Frontend : [View Code](https://github.com/LouisFernando1204/jourx-frontend)
+- 📦 Backend : [View Code](https://github.com/LouisFernando1204/jourx-backend)
 
 ## 🌟 See JourX in Action! 📸  
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">  
